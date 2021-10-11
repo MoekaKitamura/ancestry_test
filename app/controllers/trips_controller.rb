@@ -4,6 +4,7 @@ class TripsController < ApplicationController
   # GET /trips
   def index
     @trips = Trip.all
+    @parents = Place.all.order("id ASC").limit(1)
   end
 
   # GET /trips/1
@@ -13,6 +14,11 @@ class TripsController < ApplicationController
   # GET /trips/new
   def new
     @trip = Trip.new
+    @areas = Place.where(id: 1)
+    @countries = Place.find(1).children
+    # @countries = Place.find(2).siblings
+    # @countries = Place.where("length(ancestry) <= 1")
+    @cities = Place.find(6).siblings
   end
 
   # GET /trips/1/edit
@@ -53,6 +59,6 @@ class TripsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def trip_params
-      params.require(:trip).permit(:title, :country, :city, :start_on, :finish_on, :flexible, :description, :goal, :user_id)
+      params.require(:trip).permit(:title, :country, :area, :city, :start_on, :finish_on, :flexible, :description, :goal, :user_id)
     end
 end

@@ -133,4 +133,10 @@ Tripテーブル作成。
 
 [参考サイト２](https://qiita.com/Sotq_17/items/120256209993fb05ebac)
 
+rails g migration ChangeDatatypeCountryAndCityOfTrips
+rails db:migrate
+rails g migration AddAreaToTrips area:string
+rails db:migrate
+
+
 

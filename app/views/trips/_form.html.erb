@@ -17,13 +17,26 @@
   </div>
 
   <div class="field">
-    <%= form.label :country %>
-    <%= form.select :country, {include_blank: '----------'}%>
+    <%= form.label :area %>
+    <%= form.select :area, @areas.map(&:name), {include_blank: '----------'}%>
   </div>
 
   <div class="field">
+    <%= form.label :country %>
+    <%= form.select :country, @countries.map(&:name), {include_blank: '----------'}%>
+  </div>
+
+<!---同じ意味
+//  @countries.map do |country|
+//   country.name
+// end
+
+// @countries.map(&:name)--->
+
+
+  <div class="field">
     <%= form.label :city %>
-    <%= form.select :city, {include_blank: '----------'}%>
+    <%= form.select :city, @cities.map(&:name), {include_blank: '----------'}%>
 
   </div>
 
