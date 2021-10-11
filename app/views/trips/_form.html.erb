@@ -1,0 +1,53 @@
+<%= form_with(model: trip, local: true) do |form| %>
+  <% if trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+
+      <ul>
+      <% trip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.select :country, {include_blank: '----------'}%>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.select :city, {include_blank: '----------'}%>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :start_on %>
+    <%= form.date_field :start_on %>
+  </div>
+
+  <div class="field">
+    <%= form.label :finish_on %>
+    <%= form.date_field :finish_on %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flexible %>
+    <%= form.check_box :flexible %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class:"btntextchange" %>
+  </div>
+<% end %>

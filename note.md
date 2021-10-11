@@ -19,6 +19,7 @@ seedデータ作成！！
 ↓
 rails db:seed
 
+データが入った！
 ```
 [1] pry(main)> Place.all
   Place Load (0.6ms)  SELECT "places".* FROM "places"
@@ -126,5 +127,10 @@ rails db:seed
   updated_at: Mon, 11 Oct 2021 13:05:03 JST +09:00>]
 (END)
   ```
+
+Tripテーブル作成。
+このデータをどうやってセレクトボックスに使う？？
+
+[参考サイト２](https://qiita.com/Sotq_17/items/120256209993fb05ebac)
 
 
