@@ -41,12 +41,12 @@
 <p>カテゴリー</p>
  <% @parents.each do |parent| %>
     <p>1.エリア: <%= parent.name %></p>
- <% parent.children.each do |child| %>
-    <p>__2.国: <%= child.name %></p>
- <% child.children.each do |grandchild| %>
-    <p>____3.都市: <%= grandchild.name %></p>
- <% end %>
- <% end %>
+  <% parent.children.each do |child| %>
+      <p>__2.国: <%= child.name %></p>
+    <% child.children.each do |grandchild| %>
+        <p>____3.都市: <%= grandchild.name %></p>
+    <% end %>
+  <% end %>
  <% end %>
 
 <br>

@@ -4,7 +4,7 @@ class TripsController < ApplicationController
   # GET /trips
   def index
     @trips = Trip.all
-    @parents = Place.all.order("id ASC").limit(1)
+    @parents = Place.where(ancestry: nil).order("id ASC")
   end
 
   # GET /trips/1
@@ -14,11 +14,7 @@ class TripsController < ApplicationController
   # GET /trips/new
   def new
     @trip = Trip.new
-    @areas = Place.where(id: 1)
-    @countries = Place.find(1).children
-    # @countries = Place.find(2).siblings
-    # @countries = Place.where("length(ancestry) <= 1")
-    @cities = Place.find(6).siblings
+    @areas = Place.where(ancestry: nil)
   end
 
   # GET /trips/1/edit

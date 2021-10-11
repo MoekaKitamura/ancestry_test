@@ -29,4 +29,19 @@ end
 
 ['クアラルンプール', 'マラッカ', 'ペナン'].each do |name|
   malaysia.children.create(name: name)
+
+area = Place.create(name: '北米')
+america, canada = area.children.create(
+  [
+    { name: 'アメリカ' },
+    { name: 'カナダ' },
+  ]
+)
+
+['サンディエゴ', 'ニューヨーク', 'ロサンゼルス', 'ボストン'].each do |name|
+  america.children.create(name: name)
+end
+
+['トロント', 'バンクーバー', 'オタワ'].each do |name|
+  canada.children.create(name: name)
 end

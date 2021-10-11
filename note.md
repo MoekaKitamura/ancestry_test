@@ -133,10 +133,33 @@ Tripテーブル作成。
 
 [参考サイト２](https://qiita.com/Sotq_17/items/120256209993fb05ebac)
 
+データタイプはstringへ変更
 rails g migration ChangeDatatypeCountryAndCityOfTrips
 rails db:migrate
 rails g migration AddAreaToTrips area:string
 rails db:migrate
 
+newで定義する
+areaのセレクトボックスつける
+paramsで受け取るようにする
+
+viewで使った、@areas.map(&:name)の&の正体
+```
+@countries.map do |country|
+  country.name
+end
+```
+```
+@countries.map(&:name)
+```
+２つは同じことをしている(とってきたcountry全てに.nameをつける)
+
+
+🟠動的に変更させる！
+gem 'jquery-rails'
+
+bundle install
+
+_form と js
 
 
