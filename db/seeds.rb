@@ -5,8 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-area = Place.create(name: 'アジア')
-japan, korea, china, malaysia = area.children.create(
+
+europe = Place.create(name: 'ヨーロッパ')
+north_america = Place.create(name: '北米')
+south_america = Place.create(name: '中南米')
+asia = Place.create(name: 'アジア')
+oceania = Place.create(name: 'オセアニア')
+middle_east_asia = Place.create(name: '中近東')
+africa = Place.create(name: 'アフリカ')
+
+japan, korea, china, malaysia = asia.children.create(
   [
     { name: '日本' },
     { name: '韓国' },
@@ -29,9 +37,9 @@ end
 
 ['クアラルンプール', 'マラッカ', 'ペナン'].each do |name|
   malaysia.children.create(name: name)
+end
 
-area = Place.create(name: '北米')
-america, canada = area.children.create(
+america, canada = north_america.children.create(
   [
     { name: 'アメリカ' },
     { name: 'カナダ' },
