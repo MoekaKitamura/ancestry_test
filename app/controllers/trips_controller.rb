@@ -23,15 +23,14 @@ class TripsController < ApplicationController
 
   # POST /trips
   def create
-    @areas = Place.where(ancestry: nil)
-    if params[:area][:city].present?
-      place = params[:area][:city]
-    elsif params[:area][:country].present?
-      place = params[:area][:country]
-    else params[:area][:area].present?
-      place = params[:area][:area]
-    end
     @trip = Trip.new(trip_params)
+    if params[:place][:city].present?
+      place = params[:place][:city]
+    elsif params[:place][:country].present?
+      place = params[:place][:country]
+    else params[:place][:area].present?
+      place = params[:place][:area]
+    end
     @trip.place_id = place
     if @trip.save
       redirect_to @trip, notice: 'Trip was successfully created.'

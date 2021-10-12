@@ -16,20 +16,19 @@
     <%= form.text_field :title %>
   </div>
 
-  <%= collection_select :area, :area, @areas, :id, :name, include_blank: "エリアを選択してください" %>
-  <%= select :area, :country, [], include_blank: "国を選択してください", class: "default-country-select" %>
+  <%= collection_select :place, :area, @areas, :id, :name, include_blank: "エリアを選択してください" %>
+  <%= select :place, :country, [], include_blank: "国を選択してください", class: "default-country-select" %>
+  <%= select :place, :city, [], include_blank: "都市を選択してください", class: "default-city-select" %>
     <% @areas.each do |area| %>
       <template id="country-of-area_<%= area.id %>">
-      <%= collection_select :country, :country, area.children, :id, :name, include_blank: "国を選択してください" %>
+        <%= collection_select :place, :country, area.children, :id, :name, include_blank: "国を選択してください" %>
       </template>
-      <%= select :city, :city, [], include_blank: "都市を選択してください", class: "default-city-select" %>
         <% area.children.each do |country| %>
           <template id="city-of-country_<%= country.id %>">
-          <%= collection_select :city, :city, country.children, :id, :name, include_blank: "都市を選択してください" %>
+            <%= collection_select :place, :city, country.children, :id, :name, include_blank: "都市を選択してください" %>
           </template>
         <% end %>
     <% end %>
-
 
   <div class="field">
     <%= form.label :start_on %>
