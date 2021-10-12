@@ -157,11 +157,11 @@ ancestryにindexつける
 ```
 rails g migration AddIndexAncestryToPlaces
 ```
-
+アソシエーション組む place:trip は一対多
 
 newで定義する
 areaのセレクトボックスつける
-paramsで受け取るようにする
+paramsで受け取るようにする(place)
 
 viewで使った、@areas.map(&:name)の&の正体
 ```
