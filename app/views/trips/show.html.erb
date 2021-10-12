@@ -6,18 +6,21 @@
  </p>
 
  <p>
-   <strong>Area:</strong>
-   <%= @trip.area %>
+  <strong>Area:</strong>
+    <%= @trip.place.name if @trip.place.ancestry.nil? %>
+    <%= @trip.place.parent.name if @trip.place.ancestry&.length == 1 %>
+    <%= @trip.place.parent.parent.name if @trip.place.ancestry&.include?('/') %>
  </p>
 
  <p>
-   <strong>Country:</strong>
-   <%= @trip.country %>
+  <strong>Country:</strong>
+    <%= @trip.place.name if @trip.place.ancestry&.length == 1 %>
+    <%= @trip.place.parent.name if @trip.place.ancestry&.include?('/') %>
  </p>
 
  <p>
-   <strong>City:</strong>
-   <%= @trip.city %>
+  <strong>City:</strong>
+  <%= @trip.place.name if @trip.place.ancestry&.include?('/') %>
  </p>
 
  <p>

@@ -21,8 +21,11 @@
      <% @trips.each do |trip| %>
        <tr>
          <td><%= trip.title %></td>
-         <td><%= trip.country %></td>
-         <td><%= trip.city %></td>
+         <td>
+          <%= trip.place.name if trip.place.ancestry&.length == 1 %>
+          <%= trip.place.parent.name if trip.place.ancestry&.include?('/') %>
+        </td>
+         <td><%= trip.place.name if trip.place.ancestry&.include?('/') %></td>
          <td><%= trip.start_on %></td>
          <td><%= trip.finish_on %></td>
          <td><%= trip.flexible %></td>
