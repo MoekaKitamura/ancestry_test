@@ -24,7 +24,14 @@ class TripsController < ApplicationController
   # POST /trips
   def create
     @trip = Trip.new(trip_params)
-    # @trip.user_id = current_user.id
+    if params[:place][:city].present?
+      place = params[:place][:city]
+    elsif params[:place][:country].present?
+      place = params[:place][:country]
+    else params[:place][:area].present?
+      place = params[:place][:area]
+    end
+    @trip.place_id = place
     if @trip.save
       redirect_to @trip, notice: 'Trip was successfully created.'
     else
@@ -55,6 +62,6 @@ class TripsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def trip_params
-      params.require(:trip).permit(:title, :country, :area, :city, :start_on, :finish_on, :flexible, :description, :goal, :user_id)
+      params.require(:trip).permit(:title, :country, :area, :city, :start_on, :finish_on, :flexible, :description, :goal, :place_id)
     end
 end
