@@ -157,6 +157,7 @@ ancestryにindexつける
 ```
 rails g migration AddIndexAncestryToPlaces
 ```
+
 アソシエーション組む place:trip は一対多
 
 newで定義する
