@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_072109) do
+ActiveRecord::Schema.define(version: 2021_10_11_235814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +20,11 @@ ActiveRecord::Schema.define(version: 2021_10_11_072109) do
     t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_places_on_ancestry"
   end
 
   create_table "trips", force: :cascade do |t|
     t.string "title", null: false
-    t.string "country", null: false
-    t.string "city"
     t.date "start_on"
     t.date "finish_on"
     t.boolean "flexible", default: false
@@ -33,7 +32,9 @@ ActiveRecord::Schema.define(version: 2021_10_11_072109) do
     t.boolean "goal", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "area"
+    t.bigint "place_id"
+    t.index ["place_id"], name: "index_trips_on_place_id"
   end
 
+  add_foreign_key "trips", "places"
 end

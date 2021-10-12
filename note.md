@@ -6,7 +6,8 @@ $ bundle install
 
 $ rails g model Place name:string ancestry:string
 
-nameに, null: falseつける
+- nameに, null: falseつける
+- ancestryにindexつける(テストではあとで追加した)
 
 $ rails db:migrate
 
@@ -133,11 +134,30 @@ Tripテーブル作成。
 
 [参考サイト２](https://qiita.com/Sotq_17/items/120256209993fb05ebac)
 
-データタイプはstringへ変更
+~~データタイプはstringへ変更~~
+```
 rails g migration ChangeDatatypeCountryAndCityOfTrips
 rails db:migrate
-rails g migration AddAreaToTrips area:string
+```
+~~エリアカラム追加~~
+```
+rails g migration AddAreaToTrips area ~~:string~~ :integer 
 rails db:migrate
+```
+
+placeカラム追加
+```
+rails g migration AddPlaceToTrips place:references
+```
+countryカラム,cityカラムは削除
+```
+rails g migration RemoveCountryAndCityFromTrips
+```
+ancestryにindexつける
+```
+rails g migration AddIndexAncestryToPlaces
+```
+
 
 newで定義する
 areaのセレクトボックスつける

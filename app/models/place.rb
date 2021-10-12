@@ -1,3 +1,4 @@
 class Place < ApplicationRecord
-  has_ancestry #このコードを追記
+  has_ancestry
+  has_many :trips
 end
