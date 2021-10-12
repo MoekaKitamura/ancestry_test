@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+自販機コードレビューでお世話になりました北村です。<br>
+オリジナルアプリケーション作成中、行き詰まってしまったところがあるので、お尋ねしたいです。
+よろしくお願いします。
 
-Things you may want to cover:
+### 開発環境
+- Ruby 2.6.5
+- Ruby on Rails 5.2.5
 
-* Ruby version
+### 質問内容
+- gem ancestryを使用して、動的なセレクトボックスを作る方法
+(追加質問項目はissue#2に記載しています)
 
-* System dependencies
+### 実装したいこと
+- 入力画面で、親、子、孫カテゴリを作る
+(エリア→国→都市)
+- これを、親カテゴリの選択に基づき、子と孫カテゴリを非同期で反映させ、動的なセレクトボックスを作る<br>
+**-追記-<br>
+都市まで入力した場合→tripsテーブルのplace_idに、孫のidが入る(都市)
+都市を未選択→子のidが入る(国)**
 
-* Configuration
+### 実装できてる点
+- gem ancestryを使用し、多階層カテゴリテーブルPlaceの作成(seedデータはテスト用に数件導入済み、今後さらに導入予定)
+- formでそれぞれのカテゴリを表示させ、選択できる。
 
-* Database creation
+### 実装できていない点
+- ~~動的なセレクトボックスへの変更~~<br>
+**-追記-<br>
+動的に動くようにはなりましたが、いくつか問題点がございます。issue#1に記載してます。**
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### 参考サイト
+[Railsで動的なセレクトボックスを作る最も簡単な方法。](https://qiita.com/i__kobe/items/3974d9ec78dbf082a5ef)<br>
+[ancestryを使って多階層のデータを扱おう](https://pikawaka.com/rails/ancestry)<br>
+[gem ancestry カテゴリー機能実装について(データ入れ方参考)](https://qiita.com/k_suke_ja/items/aee192b5174402b6e8ca)<br>
