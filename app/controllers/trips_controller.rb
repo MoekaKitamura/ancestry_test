@@ -19,19 +19,17 @@ class TripsController < ApplicationController
 
   # GET /trips/1/edit
   def edit
+    @areas = Place.where(ancestry: nil)
+    # 井関さんメンタリング
+    # place = Place.find(@trip.place_id)
+    # areaid = place.ancestry[0.1]
+    # @areas = Place.where(id: areaid)
   end
 
   # POST /trips
   def create
     @trip = Trip.new(trip_params)
-    if params[:place][:city].present?
-      place = params[:place][:city]
-    elsif params[:place][:country].present?
-      place = params[:place][:country]
-    else params[:place][:area].present?
-      place = params[:place][:area]
-    end
-    @trip.place_id = place
+    @trip.place_id = place_param
     if @trip.save
       redirect_to @trip, notice: 'Trip was successfully created.'
     else
@@ -41,6 +39,7 @@ class TripsController < ApplicationController
 
   # PATCH/PUT /trips/1
   def update
+    @trip.place_id = place_param
     if @trip.update(trip_params)
       redirect_to @trip, notice: 'Trip was successfully updated.'
     else
@@ -62,6 +61,16 @@ class TripsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def trip_params
-      params.require(:trip).permit(:title, :country, :area, :city, :start_on, :finish_on, :flexible, :description, :goal, :place_id)
+      params.require(:trip).permit(:title, :start_on, :finish_on, :flexible, :description, :goal, :place_id)
+    end
+
+    def place_param
+      if params[:place][:city].present?
+        params[:place][:city]
+      elsif params[:place][:country].present?
+        params[:place][:country]
+      else params[:place][:area].present?
+        params[:place][:area]
+      end
     end
 end
