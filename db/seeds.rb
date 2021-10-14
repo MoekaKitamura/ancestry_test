@@ -54,46 +54,54 @@
 #   canada.children.create(name: name)
 # end
 # --------------------------------------------------------
+
+# regions = %w[
+  #   インド洋地域
+  #   オセアニア
+  #   ロシア
+#   中央アジア
+#   中央アフリカ
+#   中央アメリカ
+#   中東
+#   北アフリカ
+#   北アメリカ
+#   北ヨーロッパ
+#   南アジア
+#   南アフリカ
+#   南アメリカ
+#   南極
+#   地中海地域
+#   東アジア
+#   東アフリカ
+#   東ヨーロッパ
+#   東南アジア
+#   西アフリカ
+#   西ヨーロッパ
+# ]
+
+# regions.each do |region|
+#   Place.create(name: region)
+# end
+
 require "csv"
 
-regions = %w[
-  インド洋地域
-  オセアニア
-  ロシア
-  中央アジア
-  中央アフリカ
-  中央アメリカ
-  中東
-  北アフリカ
-  北アメリカ
-  北ヨーロッパ
-  南アジア
-  南アフリカ
-  南アメリカ
-  南極
-  地中海地域
-  東アジア
-  東アフリカ
-  東ヨーロッパ
-  東南アジア
-  西アフリカ
-  西ヨーロッパ
-]
-
-regions.each do |region|
-  Place.create(name: region)
+CSV.foreach('db/region.csv', headers: true) do |row|
+  Place.create(
+    name: row['name_jp'],
+    # name_en: row['name_en'],
+  )
 end
 
 @parents = Place.where(ancestry: nil)
   
-CSV.foreach('db/country2.csv', headers: true) do |row|
+CSV.foreach('db/country.csv', headers: true) do |row|
   region = row['region']
   parent = @parents.find_by(name: region)
-      parent.children.create(
-      name: row['name_jp'],
-      # name_en: row['name_en'],
-      # code: row['code'],
-      )
+    parent.children.create(
+    name: row['name_jp'],
+    # name_en: row['name_en'],
+    # code: row['code'],
+    )
 end
 
   # 親 21
@@ -104,10 +112,10 @@ end
 CSV.foreach('db/city.csv', headers: true) do |row|
   country = row['country']
   child = Place.find_by(name: country)
-  binding.pry
-      child.children.create(
-      name: row['name_jp'],
-      # name_en: row['name_en'],
-      # code: row['code'],
-      )
+    child.children.create(
+    name: row['name_jp'],
+    # name_en: row['name_en'],
+    )
 end
+
+  # 孫 2 = 272
