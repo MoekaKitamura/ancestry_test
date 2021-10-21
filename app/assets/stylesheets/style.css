@@ -7,3 +7,7 @@ body{
   background-color: #c6cbd1;
   color: #41384e;
 }
+
+* {
+  box-sizing: border-box;
+}
