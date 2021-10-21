@@ -7,7 +7,7 @@ $ bundle install
 $ rails g model Place name:string ancestry:string
 
 - nameに, null: falseつける
-- ancestryにindexつける(テストではあとで追加した)
+- ancestryにindexつける(テストではあとで追加した) => codeにつけるに変更
 
 $ rails db:migrate
 
